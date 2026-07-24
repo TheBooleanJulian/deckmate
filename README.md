@@ -11,6 +11,8 @@
 
 </div>
 
+![Deckmate hero](assets/hero.png)
+
 ---
 
 ## What it does
