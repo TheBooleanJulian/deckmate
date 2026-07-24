@@ -1,11 +1,36 @@
+<div align="center">
+
 # Deckmate
 
+**A beginner-friendly two-deck YouTube DJ mixer — beatmatching, crossfading, and tempo control, all client-side with no backend.**
+
 ![Version](https://img.shields.io/badge/version-1.0.0-00D4C8)
+![HTML](https://img.shields.io/badge/-HTML-E34F26?logo=html5&logoColor=white)
+![Zeabur](https://img.shields.io/badge/-Zeabur-6C5CE7)
 ![License](https://img.shields.io/badge/license-AGPLv3%20%2F%20Commercial-00D4C8.svg)
 
-A beginner-friendly two-deck DJ mixer for YouTube playlists — beatmatching, crossfading, tempo control, shuffle/search, all client-side, no backend.
+</div>
 
-Single-file static app (`index.html`). No build step, no dependencies to install.
+---
+
+## What it does
+
+Deckmate is a single-file, static DJ mixer that runs entirely in the browser. Paste YouTube links, video IDs, or playlist URLs to build a library, then load tracks across two decks with independent volume, tempo, and cue controls. An equal-power crossfader and timed auto-crossfade handle transitions. No login, no build step, no backend — just serve `index.html` over HTTP.
+
+## Features
+
+- Import tracks from YouTube links, bare video IDs, or full playlist URLs — no API key needed
+- Shuffle-by-default library with search/filter and manual track picking
+- Two independent decks: play/pause, cue, seek, per-deck volume, and real `setPlaybackRate` tempo control (pitch shifts with it — like a real turntable)
+- Manual tap-BPM per deck for rough beatmatching
+- Equal-power crossfader, master volume, and timed auto-crossfade with optional auto-pause of the outgoing deck
+
+## Tech Stack
+
+| Layer | Choice |
+|---|---|
+| Frontend | Single-file HTML (`index.html`) — no build step, no dependencies |
+| Hosting | Zeabur static hosting (GitHub CI/CD, feature → dev → main) |
 
 ## Why it needs real hosting
 
@@ -16,20 +41,9 @@ The app uses YouTube's IFrame Player API, which validates its `postMessage` hand
 
 So it needs to be served over plain `http(s)` — any static host works. This repo is set up for the usual GitHub → Zeabur pipeline.
 
-## Deploy (Zeabur)
-
-Zeabur auto-detects static sites — no config file needed. If a repo isn't tied to a language runtime and has an `index.html` at the root, Zeabur serves it as-is.
-
-1. Push this repo to GitHub.
-2. In Zeabur: **Create Project → Deploy from GitHub → select this repo**.
-3. Zeabur detects static mode automatically and deploys `index.html`.
-4. Generate a domain (or bind your own) from the service's **Networking** tab.
-
-Branching: same `feature → dev → main` flow as the other projects — merge to `main` to trigger a redeploy.
-
 ## Local development
 
-Local file:// won't work (see above). Serve it over http instead:
+Local `file://` won't work (see above). Serve it over HTTP instead:
 
 ```bash
 python -m http.server 8000
@@ -42,17 +56,22 @@ or with Node:
 npx serve .
 ```
 
-## What it does
+## Deploy (Zeabur)
 
-- Paste YouTube links, bare video IDs, or a playlist link to build a library (playlist import uses YouTube's client-side API — no API key needed)
-- Shuffle-by-default library order, with search/filter and manual track picking
-- Two decks: play/pause, cue, seek, per-deck volume, tempo (real `setPlaybackRate`, pitch shifts with it — like a real turntable), manual tap-BPM
-- Equal-power crossfader, master volume, timed auto-crossfade with optional auto-pause of the outgoing deck
+Zeabur auto-detects static sites — no config file needed. If a repo isn't tied to a language runtime and has an `index.html` at the root, Zeabur serves it as-is.
+
+1. Push this repo to GitHub.
+2. In Zeabur: **Create Project → Deploy from GitHub → select this repo**.
+3. Zeabur detects static mode automatically and deploys `index.html`.
+4. Generate a domain (or bind your own) from the service's **Networking** tab.
+
+Branching: same `feature → dev → main` flow as the other projects — merge to `main` to trigger a redeploy.
 
 ## Known limitations
 
 - **No Spotify.** Full-track playback needs an OAuth Premium-login player that can't be embedded in a shared app — YouTube is the supported source.
 - **No real waveform/audio analysis or independent pitch-shifting.** YouTube's iframe doesn't expose raw audio to the browser, so tempo changes pitch too, and BPM is manual tap-tempo rather than auto-detected.
+- **No automated tests.** Basic smoke tests for the core crossfade/tempo logic would reduce regression risk as the app grows.
 
 ## Versioning
 
@@ -73,6 +92,7 @@ This repository uses a simple major/minor version format:
 - Beat-grid markers (manual tap-set) so loops and drops can be lined up visually, not just by ear
 - Per-deck EQ (low/mid/high) using the Web Audio API where available, layered on top of the YouTube iframe audio
 - Mobile/touch-friendly layout for tablet DJing
+- Basic smoke tests for core crossfade/tempo logic, plus a `CONTRIBUTING.md` now that the repo is public
 
 **Longer-term ideas**
 - Optional local-file/SoundCloud source support alongside YouTube, for when independent pitch-shifting or offline use matters
