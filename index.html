@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deckmate — Beginner DJ Mixer</title>
+<link rel="icon" type="image/png" href="assets/deckmate-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -58,13 +59,10 @@
   }
   .brand{display:flex;align-items:center;gap:12px;}
   .brand-mark{
-    width:40px;height:40px;border-radius:50%;
-    background:conic-gradient(from 180deg, var(--a), var(--b), var(--a));
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 20px rgba(255,138,61,.25);
+    height:38px;width:auto;
+    filter:drop-shadow(0 0 10px rgba(255,138,61,.35));
     flex-shrink:0;
   }
-  .brand-mark::after{content:'';width:14px;height:14px;border-radius:50%;background:var(--bg);}
   .brand h1{font-family:var(--font-display);font-size:22px;margin:0;letter-spacing:.2px;}
   .brand p{margin:2px 0 0;color:var(--text-dim);font-size:13px;}
   .howto{color:var(--text-dim);font-size:13px;max-width:360px;}
@@ -279,7 +277,7 @@
 
   <div class="topbar">
     <div class="brand">
-      <div class="brand-mark" aria-hidden="true"></div>
+      <img class="brand-mark" src="assets/deckmate-icon.png" alt="" aria-hidden="true">
       <div>
         <h1>Deckmate</h1>
         <p>A beginner-friendly two-deck DJ mixer, right in your browser.</p>

@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/deckmate-logo.png" alt="Deckmate logo" width="200">
+
 # Deckmate
 
 **A beginner-friendly two-deck YouTube DJ mixer — beatmatching, crossfading, and tempo control, all client-side with no backend.**
@@ -10,9 +12,6 @@
 ![License](https://img.shields.io/badge/license-AGPLv3%20%2F%20Commercial-00D4C8.svg)
 
 </div>
-
-![Deckmate hero](assets/hero.png)
-
 ---
 
 ## What it does
